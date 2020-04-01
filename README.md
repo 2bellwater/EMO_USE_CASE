@@ -1,7 +1,5 @@
 # EMO
 
---- 
-
 ## EMO Usecase Diagram 
 > ### Tool
 > - vs-code : plant UML 
