@@ -1,0 +1,6 @@
+@startuml
+title login
+customer        -> emoLoginUi       : enter id and pw
+emoLoginUi      -> authServer       : checking authorization
+authServer      -> emLoginUi        : auth checking reseult(pass or fail)
+@enduml
