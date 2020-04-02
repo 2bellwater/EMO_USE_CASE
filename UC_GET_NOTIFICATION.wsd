@@ -1,0 +1,10 @@
+@startuml
+title Notify State Changed
+System -> PushServer : Request to send notifications for group members
+PushServer -> NotificationService : Receive notification
+NotificationService -> UserStateManager : Update User state
+UserStateManager -> MainUI : Update UI
+MainUI -> User : Shows changed state
+UserStateManager -> UserStateManager : Save User state
+NotificationService -> NotificationService : Show notification
+@enduml

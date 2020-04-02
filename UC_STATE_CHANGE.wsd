@@ -1,10 +1,10 @@
 @startuml
 title State Change
-User -> UserStateManager : Change User State
-UserStateManager -> GroupManager : Request notification for group members
-GroupManager -> UserDBManager : Save User State
-GroupManager -> UserDBManager : Find Group members and Get UserInfo
-GroupManager -> NotificationManager : Broadcast notification to group members
-NotificationManager -> UserStateManager : Update group member state
-NotificationManager -> OtherUser : Show notification
+User -> MainUI : Change User state
+MainUI -> UserStateManager : Update User state
+UserStateManager -> MainUI : Update UI 
+UserStateManager -> UserStateManager : Save User state
+UserStateManager -> NotificationService : Request notification for group members
+NotificationService -> GroupManager : Get group members info
+GroupManager -> UserDBManager : Get group members info
 @enduml
