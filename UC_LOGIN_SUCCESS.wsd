@@ -1,0 +1,7 @@
+@startuml
+title Login Success
+User  -> LoginManager : Enter ID/PW
+LoginManager -> AuthServer : Checking Authentication
+AuthServer -> LoginManager : Reply Authentication Reseult(PASS)
+LoginManager -> User : Reply Logined Page.
+@enduml

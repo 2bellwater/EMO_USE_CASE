@@ -1,0 +1,8 @@
+@startuml
+title Join Room 
+User1  -> RoomManager : Create Room & Require Room Unique Key.
+RoomManager -> User1 : Create and Give Key. 
+User1 -> User2 : Give Key.
+User2 -> RoomManager : Enter Key.
+RoomManager -> User2 : Give Room Page.
+@enduml
