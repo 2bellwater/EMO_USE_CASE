@@ -1,0 +1,7 @@
+@startuml
+title Login Fail
+User  -> LoginManager : Enter ID/PW
+LoginManager -> AuthServer : Checking Authentication
+AuthServer -> LoginManager : Reply Authentication Reseult(FAIL)
+LoginManager -> User : Reply Comment("Try Again")
+@enduml
