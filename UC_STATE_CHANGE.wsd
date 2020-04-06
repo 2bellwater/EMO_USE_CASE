@@ -2,9 +2,13 @@
 title State Change
 User -> MainUI : Change User state
 MainUI -> UserStateManager : Update User state
-UserStateManager -> MainUI : Update UI 
-UserStateManager -> UserStateManager : Save User state
-UserStateManager -> NotificationService : Request notification for group members
-NotificationService -> GroupManager : Get group members info
-GroupManager -> UserDBManager : Get group members info
+UserStateManager -> UserState : Update UI
+UserState -> MainUI : Update UI
+UserStateManager -> UserStateRepository : Save User state
+UserStateManager -> UserState : Request notification for group members
+UserState -> UserStateProxy : Request notification for group members
+UserStateProxy -> NotificationService : Get NotificationService
+UserStateProxy -> NotificationService : Get group members info
+NotificationService -> RoomManager : Get group members info
+RoomManager -> UserDBManager : Get group members info
 @enduml
