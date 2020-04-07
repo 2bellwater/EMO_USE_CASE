@@ -1,0 +1,36 @@
+@startuml
+title Create Room 
+User1 -> InitPage : Click create room button.
+InitPage -> RoomManager : Request create unique room number with user uuid.
+RoomManager -> RestAPIManager : Request create unique room number with user uuid.
+RestAPIManager -> Server : HTTP Request(Request create unique room number with user uuid)
+Server -> Server : Create room number
+Server -> RoomDB : Save unique number and matched user id.
+Server -> RestAPIManager : Reply unique room number.
+RestAPIManager -> RoomManager : Reply unique room number.
+RoomManager -> InitPage : Reply unique room number.
+InitPage -> MainPage : Move main page.
+MainPage -> User1 : Show main page and Toast unique room number.
+
+User1 -> User2 : Give room number.
+
+User2 -> InitPage : Click join room button with room number.
+InitPage -> RoomManager : Request join room with room number.
+RoomManager -> RestAPIManager : Request join room with room number.
+RestAPIManager -> Server : HTTP Requset(Request join room with room number)
+Server -> RoomDB : Search info(members id) with room number.
+Server -> RestAPIManager : Reply info(members id)
+RestAPIManager -> RoomManager : Reply info(members id)
+RoomManager -> InitPage : Reply info(members id)
+InitPage -> MainPage : Move main page(with members id)
+
+MainPage -> RoomManager : Request get members info with member id.
+RoomManager -> RestAPIManager : Request get members info with member id.
+RestAPIManager -> Server : HTTP Request(Request get members info with member id)
+Server -> MembersDB : Search member info with member id(unique)
+MembersDB -> Server : Reply members info(state...)
+Server -> RestAPIManager : Reply members info(state...)
+RestAPIManager -> RoomManager : Reply members info(state...)
+RoomManager -> MainPage : Reply members info(state...)
+MainPage -> MainPage : Change main page ui.
+@enduml

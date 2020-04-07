@@ -1,7 +1,10 @@
 @startuml
 title Login Success
-User  -> LoginManager : Enter ID/PW
-LoginManager -> AuthServer : Checking Authentication
-AuthServer -> LoginManager : Reply Authentication Reseult(PASS)
-LoginManager -> User : Reply Logined Page.
+User  -> LoginPage : Enter ID/PW.
+LoginPage -> LoginManager : Send ID/PW.
+LoginManager -> AuthServer : Checking authentication.
+AuthServer -> LoginManager : Reply authentication reseult(PASS)
+LoginManager -> LoginPage : Send result.
+LoginPage -> InitPage : Move init page.
+InitPage -> User : Show init page.
 @enduml
