@@ -6,9 +6,8 @@ UserStateManager -> UserState : Update UI
 UserState -> MainUI : Update UI
 UserStateManager -> UserStateRepository : Save User state
 UserStateManager -> UserState : Request notification for group members
-UserState -> UserStateProxy : Request notification for group members
-UserStateProxy -> NotificationService : Get NotificationService
-UserStateProxy -> NotificationService : Get group members info
-NotificationService -> RoomManager : Get group members info
-RoomManager -> UserDBManager : Get group members info
+UserState -> RestAPIManager : Request notification for group members
+RestAPIManager -> NotificationService : Get group members info
+NotificationService -> RoomService : Get group members info
+RoomService -> MembersDB : Get group members info
 @enduml

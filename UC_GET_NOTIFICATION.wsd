@@ -1,8 +1,8 @@
 @startuml
 title Notify State Changed
 NotificationService -> PushServer : Request to send notifications for group members
-PushServer -> UserStateProxy : Receive notification
-UserStateProxy -> UserStateManager : Update User state
+PushServer -> RestAPIManager : Receive notification
+RestAPIManager -> UserStateManager : Update User state
 UserStateManager -> UserStateRepository : Save User state
 UserStateManager -> UserState : Check receivable state
 UserStateManager -> UserState : Update UI
