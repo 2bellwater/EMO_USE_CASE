@@ -1,0 +1,11 @@
+@startuml
+title Init Page
+MainApp -> AppBloc : Make instance
+AppBloc -> AppBloc : register All Blocs
+MainApp -> AppBlocProvider : register AppBloc
+MainApp -> Page : Make Page
+Page -> AppBlocProvider : Get AppProvider with context
+AppBlocProvider -> AppBloc : Get Page Bloc
+Page -> AppBloc : Get Observable stream
+Page -> StreamBuilder : Register observable stream
+@enduml

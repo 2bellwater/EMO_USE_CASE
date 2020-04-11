@@ -2,12 +2,13 @@
 title State Change
 User -> MainUI : Change User state
 MainUI -> UserStateManager : Update User state
-UserStateManager -> UserState : Update UI
-UserState -> MainUI : Update UI
 UserStateManager -> UserStateRepository : Save User state
-UserStateManager -> UserState : Request notification for group members
-UserState -> RestAPIManager : Request notification for group members
-RestAPIManager -> NotificationService : Get group members info
-NotificationService -> RoomService : Get group members info
-RoomService -> MembersDB : Get group members info
+UserStateRepository -> UserState : Get User state info
+UserStateRepository -> UserStateRepository : Save User state to local DB
+UserStateRepository -> RestAPIManager : Save User state to remote DB
+RestAPIManager -> RoomService : Save User state
+RoomService -> MembersDB : Save User state
+RoomService -> RoomDB : Get group members info
+RoomService -> NotificationService : Notify User state changed
+
 @enduml

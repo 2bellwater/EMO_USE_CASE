@@ -2,11 +2,14 @@
 title Notify State Changed
 NotificationService -> PushServer : Request to send notifications for group members
 PushServer -> RestAPIManager : Receive notification
-RestAPIManager -> UserStateManager : Update User state
-UserStateManager -> UserStateRepository : Save User state
+RestAPIManager -> AppBloc : Get UserStateManager
+RestAPIManager -> UserState : Parse json to user state
+RestAPIManager -> UserStateRepository : Update User state
+UserStateRepository -> UserStateRepository : Save User state
+UserStateRepository -> UserStateManager : Update User state
 UserStateManager -> UserState : Check receivable state
-UserStateManager -> UserState : Update UI
-UserState -> MainUI : Update UI
+UserStateManager -> UserState : Show notification
+UserStateManager -> StreamBuilder : Add User state to Stream Sink
+StreamBuilder -> MainUI : Update UI
 MainUI -> User : Shows changed state
-UserState -> UserState : Show notification
 @enduml
